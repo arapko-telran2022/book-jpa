@@ -77,8 +77,8 @@ public class BookServiceImpl implements BookService {
 	public Iterable<BookDto> findBooksByAuthor(String authorName) {
 		Author author = authorRepository.findById(authorName)
 				.orElseThrow(() -> new AuthorNotFoundException(authorName));
-		return bookRepository.findByAuthorsName(authorName).map(a -> BookToBookDto(a)).collect(Collectors.toSet());
-//		return author.getBooks().stream().map(a -> BookToBookDto(a)).collect(Collectors.toSet());
+//		return bookRepository.findByAuthorsName(authorName).map(a -> BookToBookDto(a)).collect(Collectors.toSet());
+		return author.getBooks().stream().map(a -> BookToBookDto(a)).collect(Collectors.toSet());
 	}
 
 	@Override
@@ -103,8 +103,8 @@ public class BookServiceImpl implements BookService {
 	@Transactional(readOnly = true)
 	public Iterable<String> findPublishersByAuthor(String authorName) {
 		Author author = authorRepository.findById(authorName).orElseThrow(AuthorNotFoundException::new);
-		return publisherRepository.findPublishersByAuthor(authorName);
-//		return author.getBooks().stream().map(b -> b.getPublisher().getPublisherName()).collect(Collectors.toSet());
+//		return publisherRepository.findPublishersByAuthor(authorName);
+		return author.getBooks().stream().map(b -> b.getPublisher().getPublisherName()).collect(Collectors.toSet());
 	}
 
 	@Override
