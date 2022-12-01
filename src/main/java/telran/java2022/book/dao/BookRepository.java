@@ -9,5 +9,7 @@ import telran.java2022.book.model.Book;
 public interface BookRepository extends CrudRepository<Book, String> {
 	
 	Stream<Book> findByPublisherPublisherName(String publisherName);
-
+	
+	Stream<Book> findByAuthorsName(String authorName);
+	
 }
