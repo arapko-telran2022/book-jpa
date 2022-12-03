@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -28,7 +29,8 @@ public class Author implements Serializable {
 	String name;
 	LocalDate birthDate;
 	
-	@ManyToMany(mappedBy = "authors")
+	@ManyToMany(mappedBy = "authors", cascade = {CascadeType.ALL,}, targetEntity = Book.class)
+//	@ManyToMany
     Set<Book> books;
 
 	public Author(String name, LocalDate birthDate) {
