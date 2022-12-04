@@ -28,9 +28,8 @@ public class Author implements Serializable {
 	@Id
 	String name;
 	LocalDate birthDate;
-	
+
 	@ManyToMany(mappedBy = "authors", cascade = {CascadeType.ALL,}, targetEntity = Book.class)
-//	@ManyToMany
     Set<Book> books;
 
 	public Author(String name, LocalDate birthDate) {

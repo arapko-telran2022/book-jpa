@@ -28,7 +28,6 @@ public class Book implements Serializable{
 	@Id
 	String isbn;	
 	String title;
-//	@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL,}, targetEntity = Author.class)
 	@ManyToMany
 	Set<Author> authors;
 	@ManyToOne
